@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZL Geekstop — Wooden Classy Mockup</title>
+  <style>
+    :root {
+      --bg: #f3ebdf;
+      --panel: #f8f2e8;
+      --wood-1: #c79561;
+      --wood-2: #ae7847;
+      --wood-3: #8a5b36;
+      --wood-4: #6a4329;
+      --ink: #3a271b;
+      --muted: #705340;
+      --line: #d8c1a7;
+      --cream: #fff9f1;
+      --gold: #e0c08f;
+      --shadow: 0 18px 45px rgba(76, 47, 27, 0.16);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 28%),
+        linear-gradient(180deg, #f7f0e6 0%, #efe4d3 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .site-shell {
+      width: min(1400px, calc(100% - 32px));
+      margin: 18px auto;
+      background: var(--panel);
+      border: 1px solid rgba(123, 88, 59, 0.18);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .wood-bar {
+      position: relative;
+      background: linear-gradient(180deg, var(--wood-1), var(--wood-2) 42%, var(--wood-3));
+      color: var(--cream);
+      border-bottom: 1px solid rgba(62, 35, 18, 0.3);
+    }
+
+    .wood-bar::before,
+    .wood-card::before,
+    .section-title::after,
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06)),
+        repeating-linear-gradient(0deg, transparent 0 13px, rgba(90, 54, 31, 0.08) 13px 14px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 90px, rgba(90, 54, 31, 0.05) 90px 91px);
+      pointer-events: none;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-wrap small {
+      display: block;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #f6e3c7;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 4.25rem);
+      letter-spacing: 0.16em;
+      line-height: 0.95;
+    }
+
+    .nav {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .nav a {
+      opacity: 0.95;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav a:hover {
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      min-height: 760px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0));
+    }
+
+    .hero-copy {
+      position: relative;
+      padding: 72px 70px 64px;
+      background:
+        linear-gradient(rgba(132, 88, 52, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(132, 88, 52, 0.06) 1px, transparent 1px),
+        radial-gradient(circle at top left, #fffaf4 0%, #f3e5d4 55%, #ead6bf 100%);
+      background-size: 48px 48px, 48px 48px, auto;
+      border-right: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid #b88a60;
+      background: rgba(255, 248, 239, 0.82);
+      color: #8e613d;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .hero h2 {
+      margin: 20px 0 18px;
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 760px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 0 32px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      padding: 15px 24px;
+      border-radius: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--wood-3);
+      color: var(--cream);
+      box-shadow: 0 12px 24px rgba(106, 67, 41, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.75);
+      color: var(--wood-4);
+      border: 1px solid #c9a17b;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 700px;
+    }
+
+    .stat {
+      background: rgba(255, 250, 244, 0.8);
+      border: 1px solid rgba(179, 142, 107, 0.36);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 30px rgba(107, 73, 47, 0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .hero-visual {
+      padding: 34px;
+      background: linear-gradient(180deg, #efe0cd 0%, #e4cfb5 100%);
+      display: grid;
+      gap: 22px;
+      align-content: center;
+    }
+
+    .hero-card,
+    .wood-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #c4905a, #8b5c38);
+      min-height: 380px;
+      border: 1px solid rgba(75, 45, 23, 0.22);
+    }
+
+    .hero-card-content {
+      position: relative;
+      z-index: 1;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      min-height: 380px;
+    }
+
+    .logo-ring {
+      width: 210px;
+      height: 210px;
+      margin-bottom: 22px;
+      border: 3px solid rgba(255, 247, 237, 0.75);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--cream);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 24px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08), rgba(255,255,255,0));
+    }
+
+    .logo-ring span {
+      display: block;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .logo-ring small {
+      display: block;
+      margin-top: 10px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+
+    .card-copy h3 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      color: var(--cream);
+    }
+
+    .card-copy p {
+      margin: 0;
+      color: rgba(255, 249, 241, 0.88);
+      line-height: 1.8;
+      font-size: 15px;
+      max-width: 320px;
+    }
+
+    .mascot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-content: center;
+    }
+
+    .mascot {
+      aspect-ratio: 1;
+      border-radius: 24px;
+      background: rgba(255, 248, 240, 0.88);
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(146, 99, 62, 0.22);
+    }
+
+    .mascot::before,
+    .mascot::after {
+      content: "";
+      position: absolute;
+      background: #fffdf9;
+      border: 2px solid rgba(110, 75, 50, 0.16);
+      border-radius: 50%;
+    }
+
+    .mascot::before {
+      width: 54%;
+      height: 54%;
+      left: 23%;
+      top: 28%;
+    }
+
+    .mascot::after {
+      width: 28%;
+      height: 28%;
+      left: 12%;
+      top: 12%;
+      box-shadow: 78px 0 0 0 #fffdf9;
+    }
+
+    .mascot span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #523220;
+      border-radius: 50%;
+      top: 48%;
+      left: 42%;
+      box-shadow: 28px 0 0 #523220;
+    }
+
+    .mascot i {
+      position: absolute;
+      left: 50%;
+      top: 57%;
+      width: 24px;
+      height: 12px;
+      border-bottom: 3px solid #c79b8e;
+      border-radius: 0 0 14px 14px;
+      transform: translateX(-50%);
+      opacity: 0.8;
+    }
+
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .mini-panel {
+      background: rgba(255, 249, 241, 0.72);
+      border: 1px solid rgba(154, 112, 76, 0.25);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .mini-panel strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--wood-4);
+    }
+
+    .mini-panel span {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .content-section {
+      padding: 74px 42px;
+      border-top: 1px solid rgba(123, 88, 59, 0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      padding-right: 60px;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1;
+    }
+
+    .section-title::after {
+      inset: auto 0 10px auto;
+      width: 46px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--wood-2), var(--gold));
+    }
+
+    .section-copy {
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .featured-grid,
+    .collection-grid,
+    .showcase-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .featured-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .wood-card {
+      background: linear-gradient(180deg, #d2a06f, #9a6841);
+      border: 1px solid rgba(85, 54, 30, 0.2);
+      min-height: 320px;
+    }
+
+    .wood-card-inner {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: rgba(255, 248, 239, 0.86);
+      color: var(--wood-4);
+      border: 1px solid rgba(119, 77, 47, 0.2);
+    }
+
+    .illustration {
+      margin: 20px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.84);
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(119, 77, 47, 0.15);
+    }
+
+    .illustration.kit::before,
+    .illustration.kit::after,
+    .illustration.card::before,
+    .illustration.card::after,
+    .illustration.mascots::before,
+    .illustration.mascots::after {
+      content: "";
+      position: absolute;
+    }
+
+    .illustration.kit::before {
+      inset: 34px;
+      background: linear-gradient(135deg, #dfe8ef, #b6c4d2);
+      transform: rotate(45deg);
+      border-radius: 14px;
+      box-shadow: 0 0 0 8px rgba(132, 88, 52, 0.08);
+    }
+
+    .illustration.kit::after {
+      width: 74px;
+      height: 14px;
+      background: #76513a;
+      left: 43px;
+      bottom: 26px;
+      box-shadow: 0 -82px 0 #76513a;
+    }
+
+    .illustration.card::before {
+      width: 86px;
+      height: 116px;
+      background: linear-gradient(180deg, #f2efe9, #d6dbdd);
+      left: 36px;
+      top: 22px;
+      border-radius: 14px;
+      box-shadow: 32px 18px 0 rgba(113, 74, 49, 0.16);
+      transform: rotate(-8deg);
+    }
+
+    .illustration.card::after {
+      width: 40px;
+      height: 40px;
+      right: 26px;
+      bottom: 26px;
+      border-radius: 50%;
+      background: #f0c964;
+      box-shadow: -20px -50px 0 #84b3d4;
+    }
+
+    .illustration.mascots::before {
+      width: 58px;
+      height: 58px;
+      left: 28px;
+      bottom: 32px;
+      border-radius: 50%;
+      background: #fffdf9;
+      box-shadow: 48px 8px 0 #fffdf9;
+    }
+
+    .illustration.mascots::after {
+      width: 26px;
+      height: 26px;
+      left: 18px;
+      top: 30px;
+      border-radius: 50%;
+      background: #fffdf9;
+      box-shadow: 40px -10px 0 #fffdf9, 84px 0 0 #fffdf9, 124px -8px 0 #fffdf9;
+    }
+
+    .wood-card h3 {
+      margin: 0 0 8px;
+      color: var(--cream);
+      font-size: 28px;
+    }
+
+    .wood-card p {
+      margin: 0;
+      color: rgba(255, 248, 239, 0.9);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .collection-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: stretch;
+    }
+
+    .showcase-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .showcase-item {
+      background: rgba(255, 250, 244, 0.9);
+      border: 1px solid rgba(158, 119, 85, 0.18);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(107, 73, 47, 0.07);
+    }
+
+    .showcase-top {
+      height: 180px;
+      background: linear-gradient(180deg, #e3cfb6, #c89865);
+      position: relative;
+    }
+
+    .showcase-top::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .showcase-body {
+      padding: 18px;
+    }
+
+    .showcase-body strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .showcase-body span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .about-panel {
+      background: linear-gradient(135deg, #fffaf2, #efe0cd);
+      border: 1px solid rgba(162, 121, 84, 0.18);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(107, 73, 47, 0.08);
+    }
+
+    .about-panel ul {
+      margin: 16px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .footer {
+      padding: 32px 40px;
+      color: rgba(255, 248, 239, 0.92);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer small {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #f5debf;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .hidden.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .collection-grid,
+      .featured-grid,
+      .showcase-grid,
+      .hero-card-content,
+      .hero-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-copy,
+      .hero-visual {
+        padding: 44px 32px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-shell {
+        width: calc(100% - 18px);
+        margin: 9px auto;
+      }
+
+      .topbar,
+      .content-section,
+      .footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .topbar {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .hero,
+      .collection-grid,
+      .featured-grid,
+      .showcase-grid,
+      .hero-card-content,
+      .hero-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .hero-copy,
+      .hero-visual {
+        padding: 28px 20px;
+      }
+
+      .logo-ring {
+        width: 170px;
+        height: 170px;
+      }
+
+      .hero h2 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="wood-bar">
+      <div class="topbar">
+        <div class="brand-wrap">
+          <small>Hobby & Collectibles</small>
+          <h1 class="brand">ZL GEEKSTOP</h1>
+        </div>
+        <nav class="nav">
+          <a href="#home">Home</a>
+          <a href="#featured">Featured</a>
+          <a href="#collections">Collections</a>
+          <a href="#about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-copy hidden">
+        <div class="eyebrow">Wooden boutique aesthetic</div>
+        <h2>A classy collector storefront with warmth, charm, and premium shelf appeal.</h2>
+        <p>
+          This mockup pulls from your wooden storefront inspiration, the clean logo framing, soft mascot energy,
+          and collectible product focus. The result is a polished anime hobby website that feels premium without losing its playful personality.
+        </p>
+        <div class="button-row">
+          <button class="btn btn-primary" onclick="scrollToSection('featured')">Explore Featured</button>
+          <button class="btn btn-secondary" onclick="scrollToSection('collections')">View Collections</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>120+</strong>
+            <span>Curated model kits, plush-inspired gifts, and display-ready collectibles.</span>
+          </div>
+          <div class="stat">
+            <strong>Warm</strong>
+            <span>Woodgrain textures, soft cream tones, and boutique-style framing throughout.</span>
+          </div>
+          <div class="stat">
+            <strong>Hybrid</strong>
+            <span>Built to feel like a premium shopfront with modern online browsing behavior.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual hidden">
+        <div class="hero-card">
+          <div class="hero-card-content">
+            <div class="card-copy">
+              <div class="logo-ring">
+                <div>
+                  <span>ZL<br>GEEKSTOP</span>
+                  <small>Hobby & Collectibles</small>
+                </div>
+              </div>
+              <h3>Refined, cozy, collectible-first.</h3>
+              <p>
+                A homepage hero that pairs a premium wood sign look with soft mascot accents and display-case framing.
+              </p>
+            </div>
+            <div class="mascot-grid">
+              <div class="mascot"><span></span><i></i></div>
+              <div class="mascot"><span></span><i></i></div>
+              <div class="mascot"><span></span><i></i></div>
+              <div class="mascot"><span></span><i></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-strip">
+          <div class="mini-panel">
+            <strong>Wood Signage</strong>
+            <span>Strong header branding with warm timber gradients and boutique framing.</span>
+          </div>
+          <div class="mini-panel">
+            <strong>Soft Mascots</strong>
+            <span>Gentle character touches inspired by mouse-family cuteness and cozy display art.</span>
+          </div>
+          <div class="mini-panel">
+            <strong>Collector Layout</strong>
+            <span>Feature cards designed like premium display boxes and in-store sections.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="featured">
+      <div class="section-head hidden">
+        <div>
+          <h2 class="section-title">Featured Categories</h2>
+          <p class="section-copy">
+            These cards translate your inspiration into sellable homepage blocks: elegant wood panels, collector-focused copy,
+            and simple illustrations that keep the page stylish without needing final product photography yet.
+          </p>
+        </div>
+      </div>
+
+      <div class="featured-grid">
+        <article class="wood-card hidden">
+          <div class="wood-card-inner">
+            <span class="pill">Collector Pick</span>
+            <div class="illustration kit"></div>
+            <div>
+              <h3>Model Kits</h3>
+              <p>Showcase Gunpla, mecha builds, tools, and premium boxed releases in a polished feature block.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wood-card hidden">
+          <div class="wood-card-inner">
+            <span class="pill">Soft Launch</span>
+            <div class="illustration mascots"></div>
+            <div>
+              <h3>Cute Collectibles</h3>
+              <p>Perfect for plush-inspired items, mascots, desk charms, and cozy gifts with a softer visual tone.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="wood-card hidden">
+          <div class="wood-card-inner">
+            <span class="pill">Best Seller</span>
+            <div class="illustration card"></div>
+            <div>
+              <h3>Trading Cards</h3>
+              <p>Use this slot for singles, sealed products, top loaders, and featured weekly pulls or restocks.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="collections">
+      <div class="section-head hidden">
+        <div>
+          <h2 class="section-title">Curated Collections</h2>
+          <p class="section-copy">
+            This section is designed like an in-store aisle map: one large showcase area and one editorial panel for storytelling,
+            promotions, or seasonal drops.
+          </p>
+        </div>
+      </div>
+
+      <div class="collection-grid">
+        <div class="showcase-grid">
+          <div class="showcase-item hidden">
+            <div class="showcase-top"></div>
+            <div class="showcase-body">
+              <strong>One Piece Corner</strong>
+              <span>Dedicated landing block for anime-themed best sellers, gifts, and signature series highlights.</span>
+            </div>
+          </div>
+          <div class="showcase-item hidden">
+            <div class="showcase-top"></div>
+            <div class="showcase-body">
+              <strong>Gundam Wall</strong>
+              <span>A more technical collection area for builders, graded kits, and premium display-ready stock.</span>
+            </div>
+          </div>
+          <div class="showcase-item hidden">
+            <div class="showcase-top"></div>
+            <div class="showcase-body">
+              <strong>Mouse Family Gifts</strong>
+              <span>Pastel-friendly corner for charm drops, softer plush lines, and lifestyle accessories.</span>
+            </div>
+          </div>
+          <div class="showcase-item hidden">
+            <div class="showcase-top"></div>
+            <div class="showcase-body">
+              <strong>Card Vault</strong>
+              <span>For weekly featured cards, collectors’ sets, sleeves, binders, and display case picks.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="about-panel hidden">
+          <h3 style="margin-top:0; font-size: 2rem;">Why this style works</h3>
+          <p class="section-copy" style="margin: 0; max-width: none;">
+            The wood-heavy palette makes the brand feel established and premium, while the soft cream surfaces keep the page light enough for anime and hobby products.
+            It bridges “classy boutique” and “collector fun” instead of leaning too corporate or too childish.
+          </p>
+          <ul>
+            <li>Strong storefront identity from the first screen</li>
+            <li>Easy to swap illustrations with real product photos later</li>
+            <li>Works well for anime, Gunpla, collectibles, and card categories</li>
+            <li>Balances playful mascots with upscale product presentation</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="content-section" id="about">
+      <div class="section-head hidden">
+        <div>
+          <h2 class="section-title">Brand Direction</h2>
+          <p class="section-copy">
+            You can treat this page as a visual starting point for a real storefront. The next step would be replacing the placeholder illustrations with actual category photos,
+            your real logo asset, and live product data.
+          </p>
+        </div>
+      </div>
+      <div class="about-panel hidden">
+        <h3 style="margin-top:0; font-size: 1.9rem;">Recommended next refinements</h3>
+        <ul>
+          <li>Add your actual ZL Geekstop logo as SVG in the hero and header</li>
+          <li>Swap the four collection cards with real category imagery</li>
+          <li>Introduce a product slider or “new arrivals” shelf section</li>
+          <li>Use a serif accent font for headings if you want even more boutique polish</li>
+          <li>Connect a shop grid and product detail pages using the same wood-and-cream system</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="wood-bar">
+      <div class="footer">
+        <div>
+          <strong style="display:block; font-size:1.2rem; margin-bottom:6px;">ZL Geekstop</strong>
+          <small>Wooden classy web concept for hobby & collectibles</small>
+        </div>
+        <small>Designed as a mockup in plain HTML, CSS, and JavaScript</small>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
